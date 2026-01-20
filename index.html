@@ -10,6 +10,9 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://akstructura.com/">
     
+    <!-- SECURITY HEADERS -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
     <title>ArcKernē Structura | Institutional Governance Architecture</title>
     <meta name="description" content="Independent institutional governance architecture for ultra-high-net-worth families. We design constitutional-style fiduciary systems. Singapore registered office (administrative).">
 
@@ -62,7 +65,6 @@
     </script>
 
     <style>
-        /* Base Typography */
         html { font-size: 16px; }
         @media (max-width: 768px) { html { font-size: 16px; } }
         
@@ -75,7 +77,6 @@
             line-height: 1.6;
         }
 
-        /* Texture Overlay */
         .texture-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -85,7 +86,6 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
-        /* View Management */
         .view-section { display: none; opacity: 0; }
         .view-section.active {
             display: block;
@@ -98,7 +98,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Mobile Menu */
         #mobile-menu {
             transition: opacity 0.3s ease, visibility 0.3s;
             pointer-events: none; 
@@ -109,7 +108,6 @@
             pointer-events: auto; 
         }
 
-        /* Swiss-style Link Underline */
         .link-underline {
             position: relative;
             display: inline-block;
@@ -132,18 +130,9 @@
             transform-origin: bottom left;
         }
 
-        /* Accessibility: Focus States */
         button:focus-visible, a:focus-visible {
             outline: 2px solid #C5A059;
             outline-offset: 2px;
-        }
-
-        /* Print Styles */
-        @media print {
-            .texture-overlay, nav, #mobile-menu, footer button, .no-print { display: none !important; }
-            body { background: white; color: black; font-size: 12pt; }
-            .view-section { display: block !important; opacity: 1 !important; page-break-after: always; }
-            a[href]:after { content: " (" attr(href) ")"; font-size: 0.8em; }
         }
     </style>
 </head>
@@ -151,7 +140,6 @@
 
 <div class="texture-overlay"></div>
 
-<!-- Institutional Requirement: Noscript Fallback -->
 <noscript>
     <div class="p-6 text-center bg-brand-paper text-brand-black border-b border-gray-200">
         <p class="font-serif italic">This site requires JavaScript for enhanced navigation. All institutional content remains accessible via direct inquiry.</p>
@@ -167,12 +155,8 @@
     <nav class="flex-grow flex flex-col justify-start pt-8 px-8 space-y-6 overflow-y-auto">
         <button onclick="handleNav('home')" class="text-2xl font-serif text-brand-black text-left hover:pl-4 transition-all duration-300 min-h-[48px] flex items-center">Overview</button>
         
-        <!-- Hierarchy: Office Group -->
-        <div class="flex flex-col space-y-2">
-            <button onclick="handleNav('office')" class="text-2xl font-serif text-brand-black text-left hover:pl-4 transition-all duration-300 min-h-[48px] flex items-center">The Office</button>
-            <button onclick="handleNav('principal')" class="text-xl font-serif text-brand-charcoal text-left pl-8 hover:text-brand-black transition-all duration-300 border-l border-brand-gold/30 ml-4 min-h-[44px] flex items-center">The Principal</button>
-            <button onclick="handleNav('oversight')" class="text-xl font-serif text-brand-charcoal text-left pl-8 hover:text-brand-black transition-all duration-300 border-l border-brand-gold/30 ml-4 min-h-[44px] flex items-center">The Council</button>
-        </div>
+        <!-- Hierarchy: Office Group (Hidden Principal/Council as per request) -->
+        <button onclick="handleNav('office')" class="text-2xl font-serif text-brand-black text-left hover:pl-4 transition-all duration-300 min-h-[48px] flex items-center">The Office</button>
 
         <button onclick="handleNav('systems')" class="text-2xl font-serif text-brand-black text-left hover:pl-4 transition-all duration-300 min-h-[48px] flex items-center">Systems</button>
         <button onclick="handleNav('protocol')" class="text-2xl font-serif text-brand-black text-left hover:pl-4 transition-all duration-300 min-h-[48px] flex items-center">Engagement Protocol</button>
@@ -194,7 +178,7 @@
             </div>
         </div>
 
-        <!-- Desktop Menu -->
+        <!-- Desktop Menu: Removed Principal & Council -->
         <div class="hidden lg:flex items-center gap-8">
             <button onclick="handleNav('office')" class="font-sans text-[11px] uppercase tracking-widest-caps text-brand-charcoal hover:text-brand-gold transition-colors link-underline py-3">The Office</button>
             <button onclick="handleNav('systems')" class="font-sans text-[11px] uppercase tracking-widest-caps text-brand-charcoal hover:text-brand-gold transition-colors link-underline py-3">Systems</button>
@@ -332,10 +316,14 @@
                         </div>
                     </section>
                     
-                    <!-- Internal Nav -->
-                    <div class="pt-16 md:pt-20 border-t border-gray-100 flex justify-end">
-                        <button onclick="handleNav('systems')" class="group flex items-center space-x-3 text-brand-black hover:text-brand-gold transition-colors duration-300 min-h-[48px] px-4 -mr-4">
-                            <span class="font-sans text-xs font-semibold tracking-widest uppercase border-b border-brand-black pb-1 group-hover:border-brand-gold transition-colors duration-300">View Systems</span>
+                    <!-- NEW CTA's for Principal & Council (Stacked Vertical) -->
+                    <div class="pt-16 md:pt-20 border-t border-gray-100 flex flex-col gap-6 justify-start items-start">
+                        <button onclick="handleNav('principal')" class="group flex items-center space-x-3 text-brand-black hover:text-brand-gold transition-colors duration-300 min-h-[48px]">
+                            <span class="font-sans text-xs font-semibold tracking-widest uppercase border-b border-brand-black pb-1 group-hover:border-brand-gold transition-colors duration-300">View The Principal</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                        </button>
+                        <button onclick="handleNav('oversight')" class="group flex items-center space-x-3 text-brand-black hover:text-brand-gold transition-colors duration-300 min-h-[48px]">
+                            <span class="font-sans text-xs font-semibold tracking-widest uppercase border-b border-brand-black pb-1 group-hover:border-brand-gold transition-colors duration-300">View The Council</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                         </button>
                     </div>
@@ -343,114 +331,7 @@
             </div>
         </div>
 
-        <!-- VIEW 3: SYSTEMS -->
-        <div id="view-systems" class="view-section" role="region" aria-label="Governance Systems" data-title="Governance Frameworks">
-            <div class="max-w-5xl mx-auto px-6 sm:px-8 md:px-12 pt-20 md:pt-32 pb-28">
-                <header class="mb-24 md:mb-32 max-w-4xl">
-                    <div class="flex items-center space-x-3 mb-10">
-                        <div class="h-[1px] w-8 bg-brand-gold"></div>
-                        <p class="font-sans text-[11px] font-medium tracking-widest-caps uppercase text-brand-gold">System Architecture</p>
-                    </div>
-                    <h1 class="font-serif text-[2rem] sm:text-4xl md:text-5xl lg:text-[3.75rem] font-normal leading-tight-heading tracking-tight text-brand-black mb-8 text-left">
-                        Constitutional-Style Governance<br>
-                        <span class="italic text-gray-800">Systems</span>
-                    </h1>
-                    <h2 class="font-sans text-xs md:text-sm text-gray-500 font-medium tracking-widest-caps uppercase mb-12 max-w-2xl leading-relaxed border-l-2 border-brand-gold pl-6 md:pl-8 text-left">
-                        Designed with Swiss institutional standards.<br>For ultra-high-net-worth families and foundations.
-                    </h2>
-                    <div class="border-l-2 border-brand-gold/30 pl-6 md:pl-8 py-2">
-                        <p class="font-serif text-lg md:text-xl leading-relaxed text-gray-800 max-w-prose text-left">
-                            ArcKernē Structura engineers constitutional-style governance systems. We integrate fiduciary discipline, jurisdictional coherence, and constitutional design into a single documented framework.
-                        </p>
-                    </div>
-                </header>
-
-                <div class="space-y-20 md:space-y-0 border-t border-gray-200">
-                    <section class="grid grid-cols-1 md:grid-cols-12 gap-y-6 md:gap-12 items-start pt-16 md:pt-20 text-left">
-                        <div class="md:col-span-4 lg:col-span-3">
-                            <h3 class="font-sans text-[10px] font-bold text-brand-gold tracking-widest-caps uppercase mb-3">03 / Mechanics</h3>
-                            <h4 class="font-serif text-2xl text-brand-black">System Pillars</h4>
-                        </div>
-                        <div class="md:col-span-8 lg:col-span-9">
-                            <div class="grid sm:grid-cols-2 gap-x-12 gap-y-12">
-                                <div>
-                                    <h5 class="font-sans text-[10px] font-bold uppercase tracking-widest text-brand-black mb-3 pb-2 border-b border-gray-200">Custodial Duty</h5>
-                                    <p class="font-sans text-sm text-gray-600 leading-relaxed">Capital oversight is structured through disciplined stewardship and prudential controls that safeguard integrity and permanence.</p>
-                                </div>
-                                <div>
-                                    <h5 class="font-sans text-[10px] font-bold uppercase tracking-widest text-brand-black mb-3 pb-2 border-b border-gray-200">Governance Protocol</h5>
-                                    <p class="font-sans text-sm text-gray-600 leading-relaxed">Decision rights and oversight mechanisms are codified into durable constitutional rules that maintain clarity and accountability.</p>
-                                </div>
-                                <div>
-                                    <h5 class="font-sans text-[10px] font-bold uppercase tracking-widest text-brand-black mb-3 pb-2 border-b border-gray-200">Jurisdictional Fidelity</h5>
-                                    <p class="font-sans text-sm text-gray-600 leading-relaxed">Cross-border coherence is achieved by selecting jurisdictions with proven fiduciary strength, legal order, and long-term enforceability.</p>
-                                </div>
-                                <div>
-                                    <h5 class="font-sans text-[10px] font-bold uppercase tracking-widest text-brand-black mb-3 pb-2 border-b border-gray-200">Legitimacy Alignment</h5>
-                                    <p class="font-sans text-sm text-gray-600 leading-relaxed">Each structure harmonizes intent, legal obligations, and institutional standards to sustain enduring legitimacy across generations.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-                
-                <div class="mt-20 pt-8 border-t border-gray-100 max-w-prose">
-                    <p class="font-serif text-base italic text-gray-400">"We follow a disciplined, institutional governance sequence, aligned with Swiss standards of permanence and fiduciary coherence."</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- VIEW 4: PROTOCOL -->
-        <div id="view-protocol" class="view-section" role="region" aria-label="Engagement Protocol" data-title="Engagement Protocol">
-            <div class="max-w-5xl mx-auto px-6 sm:px-8 md:px-12 pt-20 md:pt-32 pb-28">
-                <header class="mb-24 md:mb-32 max-w-4xl">
-                    <div class="flex items-center space-x-3 mb-10">
-                        <div class="h-[1px] w-8 bg-brand-gold"></div>
-                        <p class="font-sans text-[11px] font-medium tracking-widest-caps uppercase text-brand-gold">Operational Sequence</p>
-                    </div>
-                    <h1 class="font-serif text-[2rem] sm:text-4xl md:text-5xl lg:text-[3.75rem] font-normal leading-tight-heading tracking-tight text-brand-black mb-8 text-left">
-                        The Engagement <br class="hidden sm:block" />
-                        <span class="italic text-gray-800">Protocol</span>
-                    </h1>
-                    <div class="border-l-2 border-brand-gold/30 pl-6 md:pl-8 py-2">
-                        <p class="font-serif text-lg md:text-xl leading-relaxed text-gray-800 max-w-prose text-left">
-                            We do not offer ad-hoc solutions. ArcKernē Structura follows a disciplined, four-phase sequence designed to translate dynastic intent into documented structural reality.
-                        </p>
-                    </div>
-                </header>
-
-                <div class="space-y-20 md:space-y-0 border-t border-gray-200">
-                    <section class="grid grid-cols-1 md:grid-cols-12 gap-y-6 md:gap-12 items-start pt-16 md:pt-20 text-left">
-                        <div class="md:col-span-4 lg:col-span-3">
-                            <h3 class="font-sans text-[10px] font-bold text-brand-gold tracking-widest-caps uppercase mb-3">01 / Sequence</h3>
-                            <h4 class="font-serif text-2xl text-brand-black">The Four Phases</h4>
-                        </div>
-                        <div class="md:col-span-8 lg:col-span-9">
-                            <div class="space-y-12">
-                                <div>
-                                    <h5 class="font-serif text-xl text-brand-black mb-2">Phase I: Structural Discovery</h5>
-                                    <p class="font-sans text-sm text-gray-600 leading-relaxed mb-4">Analytical mapping of asset universe and structural/jurisdictional risk audit.</p>
-                                </div>
-                                <div>
-                                    <h5 class="font-serif text-xl text-brand-black mb-2">Phase II: Constitutional Design</h5>
-                                    <p class="font-sans text-sm text-gray-600 leading-relaxed mb-4">Drafting the laws and blueprints before construction begins.</p>
-                                </div>
-                                <div>
-                                    <h5 class="font-serif text-xl text-brand-black mb-2">Phase III: Fiduciary Implementation</h5>
-                                    <p class="font-sans text-sm text-gray-600 leading-relaxed mb-4">Coordinating licensed partners to execute the blueprint under separate contractual engagement with the client.</p>
-                                </div>
-                                <div>
-                                    <h5 class="font-serif text-xl text-brand-black mb-2">Phase IV: Stewardship</h5>
-                                    <p class="font-sans text-sm text-gray-600 leading-relaxed mb-4">Establishing governance rhythm for long-term resilience.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </div>
-        </div>
-
-        <!-- VIEW 5: PRINCIPAL -->
+        <!-- VIEW 3: PRINCIPAL -->
         <div id="view-principal" class="view-section" role="region" aria-label="The Principal" data-title="Principal's Statement">
             <div class="max-w-5xl mx-auto px-6 sm:px-8 md:px-12 pt-20 md:pt-32 pb-28">
                 <header class="mb-24 md:mb-32 max-w-4xl">
@@ -491,11 +372,16 @@
                             </div>
                         </div>
                     </section>
+
+                    <!-- Back Nav -->
+                    <div class="pt-16 md:pt-20 border-t border-gray-100 flex justify-start">
+                        <button onclick="handleNav('office')" class="text-gray-400 hover:text-brand-black transition-colors text-xs font-sans tracking-widest uppercase min-h-[48px] px-4 -ml-4">← Back to Office</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- VIEW 6: OVERSIGHT -->
+        <!-- 4. OVERSIGHT -->
         <div id="view-oversight" class="view-section" role="region" aria-label="Institutional Oversight" data-title="Institutional Oversight">
             <div class="max-w-5xl mx-auto px-6 sm:px-8 md:px-12 pt-20 md:pt-32 pb-28">
                 <header class="mb-24 md:mb-32 max-w-4xl">
@@ -547,11 +433,122 @@
                             </div>
                         </div>
                     </section>
+
+                    <!-- Back Navigation -->
+                    <div class="pt-16 md:pt-20 border-t border-gray-100 flex justify-start">
+                        <button onclick="handleNav('office')" class="text-gray-400 hover:text-brand-black transition-colors text-xs font-sans tracking-widest uppercase min-h-[44px] px-4 -ml-4">← Back to Office</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- VIEW 7: REGULATORY -->
+        <!-- VIEW 5: SYSTEMS -->
+        <div id="view-systems" class="view-section" role="region" aria-label="Governance Systems" data-title="Governance Frameworks">
+            <div class="max-w-5xl mx-auto px-6 sm:px-8 md:px-12 pt-20 md:pt-32 pb-28">
+                <header class="mb-24 md:mb-32 max-w-4xl">
+                    <div class="flex items-center space-x-3 mb-10">
+                        <div class="h-[1px] w-8 bg-brand-gold"></div>
+                        <p class="font-sans text-[11px] font-medium tracking-widest-caps uppercase text-brand-gold">System Architecture</p>
+                    </div>
+                    <h1 class="font-serif text-[2rem] sm:text-4xl md:text-5xl lg:text-[3.75rem] font-normal leading-tight-heading tracking-tight text-brand-black mb-8 text-left">
+                        Constitutional-Style Governance<br>
+                        <span class="italic text-gray-800">Systems</span>
+                    </h1>
+                    <h2 class="font-sans text-xs md:text-sm text-gray-500 font-medium tracking-widest-caps uppercase mb-12 max-w-2xl leading-relaxed border-l-2 border-brand-gold pl-6 md:pl-8 text-left">
+                        Designed with Swiss institutional standards.<br>For ultra-high-net-worth families and foundations.
+                    </h2>
+                    <div class="border-l-2 border-brand-gold/30 pl-6 md:pl-8 py-2">
+                        <p class="font-serif text-lg md:text-xl leading-relaxed text-gray-800 max-w-prose text-left">
+                            ArcKernē Structura engineers constitutional-style governance systems. We integrate fiduciary discipline, jurisdictional coherence, and constitutional design into a single documented framework.
+                        </p>
+                    </div>
+                </header>
+
+                <div class="space-y-20 md:space-y-0 border-t border-gray-200">
+                    <section class="grid grid-cols-1 md:grid-cols-12 gap-y-6 md:gap-12 items-start pt-16 md:pt-20 text-left">
+                        <div class="md:col-span-4 lg:col-span-3">
+                            <h3 class="font-sans text-[10px] font-bold text-brand-gold tracking-widest-caps uppercase mb-3">03 / Mechanics</h3>
+                            <h4 class="font-serif text-2xl text-brand-black">System Pillars</h4>
+                        </div>
+                        <div class="md:col-span-8 lg:col-span-9">
+                            <div class="grid sm:grid-cols-2 gap-x-12 gap-y-12">
+                                <div>
+                                    <h5 class="font-sans text-[10px] font-bold uppercase tracking-widest text-brand-black mb-3 pb-2 border-b border-gray-200">Custodial Duty</h5>
+                                    <p class="font-sans text-sm text-gray-600 leading-relaxed">Capital oversight is structured through disciplined stewardship and prudential controls that safeguard integrity and permanence.</p>
+                                </div>
+                                <div>
+                                    <h5 class="font-sans text-[10px] font-bold uppercase tracking-widest text-brand-black mb-3 pb-2 border-b border-gray-200">Governance Protocol</h5>
+                                    <p class="font-sans text-sm text-gray-600 leading-relaxed">Decision rights and oversight mechanisms are codified into durable constitutional rules that maintain clarity and accountability.</p>
+                                </div>
+                                <div>
+                                    <h5 class="font-sans text-[10px] font-bold uppercase tracking-widest text-brand-black mb-3 pb-2 border-b border-gray-200">Jurisdictional Fidelity</h5>
+                                    <p class="font-sans text-sm text-gray-600 leading-relaxed">Cross-border coherence is achieved by selecting jurisdictions with proven fiduciary strength, legal order, and long-term enforceability.</p>
+                                </div>
+                                <div>
+                                    <h5 class="font-sans text-[10px] font-bold uppercase tracking-widest text-brand-black mb-3 pb-2 border-b border-gray-200">Legitimacy Alignment</h5>
+                                    <p class="font-sans text-sm text-gray-600 leading-relaxed">Each structure harmonizes intent, legal obligations, and institutional standards to sustain enduring legitimacy across generations.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="mt-20 pt-8 border-t border-gray-100 max-w-prose">
+                    <p class="font-serif text-base italic text-gray-400">"We follow a disciplined, institutional governance sequence, aligned with Swiss standards of permanence and fiduciary coherence."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. PROTOCOL -->
+        <div id="view-protocol" class="view-section" role="region" aria-label="Engagement Protocol" data-title="Engagement Protocol">
+            <div class="max-w-5xl mx-auto px-6 sm:px-8 md:px-12 pt-20 md:pt-32 pb-28">
+                <header class="mb-24 md:mb-32 max-w-4xl">
+                    <div class="flex items-center space-x-3 mb-10">
+                        <div class="h-[1px] w-8 bg-brand-gold"></div>
+                        <p class="font-sans text-[11px] font-medium tracking-widest-caps uppercase text-brand-gold">Operational Sequence</p>
+                    </div>
+                    <h1 class="font-serif text-[2rem] sm:text-4xl md:text-5xl lg:text-[3.75rem] font-normal leading-tight-heading tracking-tight text-brand-black mb-8 text-left">
+                        The Engagement <br class="hidden sm:block" />
+                        <span class="italic text-gray-800">Protocol</span>
+                    </h1>
+                    <div class="border-l-2 border-brand-gold/30 pl-6 md:pl-8 py-2">
+                        <p class="font-serif text-lg md:text-xl leading-relaxed text-gray-800 max-w-prose text-left">
+                            We do not offer ad-hoc solutions. ArcKernē Structura follows a disciplined, four-phase sequence designed to translate dynastic intent into documented structural reality.
+                        </p>
+                    </div>
+                </header>
+
+                <div class="space-y-20 md:space-y-0 border-t border-gray-200">
+                    <section class="grid grid-cols-1 md:grid-cols-12 gap-y-6 md:gap-12 items-start pt-16 md:pt-20 text-left">
+                        <div class="md:col-span-4 lg:col-span-3">
+                            <h3 class="font-sans text-[10px] font-bold text-brand-gold tracking-widest-caps uppercase mb-3">01 / Sequence</h3>
+                            <h4 class="font-serif text-2xl text-brand-black">The Four Phases</h4>
+                        </div>
+                        <div class="md:col-span-8 lg:col-span-9">
+                            <div class="space-y-12">
+                                <div>
+                                    <h5 class="font-serif text-xl text-brand-black mb-2">Phase I: Structural Discovery</h5>
+                                    <p class="font-sans text-sm text-gray-600 leading-relaxed mb-4">Analytical mapping of asset universe and structural/jurisdictional risk audit.</p>
+                                </div>
+                                <div>
+                                    <h5 class="font-serif text-xl text-brand-black mb-2">Phase II: Constitutional Design</h5>
+                                    <p class="font-sans text-sm text-gray-600 leading-relaxed mb-4">Drafting the laws and blueprints before construction begins.</p>
+                                </div>
+                                <div>
+                                    <h5 class="font-serif text-xl text-brand-black mb-2">Phase III: Fiduciary Implementation</h5>
+                                    <p class="font-sans text-sm text-gray-600 leading-relaxed mb-4">Coordinating licensed partners to execute the blueprint under separate contractual engagement with the client.</p>
+                                </div>
+                                <div>
+                                    <h5 class="font-serif text-xl text-brand-black mb-2">Phase IV: Stewardship</h5>
+                                    <p class="font-sans text-sm text-gray-600 leading-relaxed mb-4">Establishing governance rhythm for long-term resilience.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. REGULATORY -->
         <div id="view-regulatory" class="view-section" role="region" aria-label="Legal & Regulatory" data-title="Legal & Regulatory">
             <div class="max-w-5xl mx-auto px-6 sm:px-8 md:px-12 pt-20 md:pt-32 pb-28">
                 <header class="mb-24 md:mb-32 max-w-4xl">
@@ -574,7 +571,6 @@
                         <div class="md:col-span-8 lg:col-span-9">
                             <div class="bg-[#F8F8F7] border-l-2 border-brand-charcoal/20 p-8 max-w-xl">
                                 <h5 class="font-sans text-xs font-bold uppercase tracking-widest text-brand-black mb-4">Explicit Limitations</h5>
-                                <!-- Master Negative Statement -->
                                 <p class="font-sans text-xs text-gray-500 leading-relaxed italic border-t border-gray-200 pt-4">
                                     ArcKernē Structura does not provide legal, tax, fiduciary, investment, or regulated financial services. All execution is performed by licensed third-party professionals under separate engagement.
                                 </p>
@@ -593,8 +589,6 @@
                                     This site uses minimal technical cookies required for navigation state. No third-party tracking or advertising cookies are deployed.
                                 </p>
                             </div>
-                            
-                            <!-- Audit Fix: No Offer Disclaimer -->
                              <div class="mt-8 border-t border-gray-200 pt-8">
                                 <p class="font-sans text-xs text-gray-400 leading-relaxed italic">
                                     Nothing on this website constitutes an offer, solicitation, or recommendation in any jurisdiction.
@@ -606,7 +600,7 @@
             </div>
         </div>
         
-        <!-- VIEW 8: INQUIRIES -->
+        <!-- 8. INQUIRIES -->
         <div id="view-inquiries" class="view-section" role="region" aria-label="Inquiries" data-title="Mandate Inquiries">
              <div class="max-w-5xl mx-auto px-6 sm:px-8 md:px-12 pt-20 md:pt-32 pb-28">
                  <h1 class="font-serif text-[2rem] text-brand-black mb-8 text-left">Mandate Inquiries</h1>
